@@ -118,8 +118,8 @@ $('#Genero').trigger('pagecreate');			}
 		 }
 		 
 		
-		$('.imgenj').width($('#TodosListado').width()*.30);
-$('#Genero').trigger('pagecreate');		
+		$('.imgenj').width($('#DatosLista').width()*.30);
+$('#Lista').trigger('pagecreate');		
 	}
 		if (DatosJuegos.datos == 0)
 		
