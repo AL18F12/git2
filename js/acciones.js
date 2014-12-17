@@ -94,6 +94,48 @@ $('#Genero').trigger('pagecreate');			}
 			}
 			
 
+//Segunda Funcion listado
+
+	function buscarlistado ()
+{alert ('Funcion');
+	//datos a mandar
+	$.ajax({
+		type:"POST",
+		url: "http://192.168.1.18/practicafinal/consultalistado.php"		
+	}).done (function(msg){
+		alert (msg);
+		var DatosJuegos = JSON.parse(msg);
+		
+		if(DatosJuegos.datos == 1)
+		{alert ('Datos');	
+		
+		$('#DatosLista').empty();
+		 for(var i=0; i < DatosJuegos.juegos.length; i++)
+		 
+		 {
+			 $('#DatosLista').append('<div><h4>Nombre:</h4>'+ DatosJuegos.juegos[i].Nombre + ' <h4>Genero:</h4>'+ DatosJuegos.juegos[i].Genero + ' <h4>Compañia:</h4>'+ DatosJuegos.juegos[i].Compa + ' <h4>Sinopsis:</h4>'+ DatosJuegos.juegos[i].Sinopsis + ' <img src="http://192.168.1.18/practicafinal/recursos/imagenes/juegos/' + DatosJuegos.juegos[i].Id + '.png" class="imgenj"> </div>');
+			 
+		 }
+		 
+		
+		$('.imgenj').width($('#TodosListado').width()*.30);
+$('#Genero').trigger('pagecreate');		
+	}
+		if (DatosJuegos.datos == 0)
+		
+		{	
+		alert ('no hay juegos que mostrar')	
+
+
+		}
+ });
+}
+	
+	
+	
+//Fin de la segunda Funcion listado
+
+
 
 $(document).ready(function(e){	
 	document.addEventListener("deviceready",function(){
@@ -119,53 +161,4 @@ $(document).ready(function(e){
 
 
 
-//Segunda Funcion listado
-
-	function buscarlistado ()
-{alert ('Funcion');
-	//datos a mandar
-	$.ajax({
-		type:"POST",
-		url: "http://192.168.1.18/practicafinal/consultalistado.php"		
-	}).done (function(msg){
-		alert (msg);
-		var DatosJuegos = JSON.parse(msg);
-		
-		if(DatosJuegos.datos == 1)
-		{alert ('Datos');	
-		
-		$('#DatosLista').empty();
-		 for(var i=0; i < DatosJuegos.juegos.length; i++)
-		 
-		 {
-			 $('#DatosLista').append('<div style="float:right; width:50%"><h4>Nombre:</h4>'+ DatosJuegos.juegos[i].Nombre + ' <h4>Genero:</h4>'+ DatosJuegos.juegos[i].Genero + ' <h4>Compañia:</h4>'+ DatosJuegos.juegos[i].Compa + ' <h4>Sinopsis:</h4>'+ DatosJuegos.juegos[i].Sinopsis + ' </div> <div style="float:left; width:50%;"><img src="http://192.168.1.18/practicafinal/recursos/imagenes/juegos/' + DatosJuegos.juegos[i].Id + '.png" class="imgenj"></div>');
-			 
-		 }
-		 
-		
-		$('.imgenj').width($('#TodosListado').width()*.30);
-$('#Genero').trigger('pagecreate');		
-	}
-		if (DatosJuegos.datos == 0)
-		
-		{	
-		alert ('no hay juegos que mostrar')	
-
-
-		}
- });
-}
-	
-
-
-
-
-
-		
-		
-
-	
-	
-	
-//Fin de la segunda Funcion listado
 
